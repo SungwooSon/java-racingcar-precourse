@@ -44,5 +44,4 @@ public class Car implements Comparable<Car> {
     public int compareTo(Car o) {
         return this.position - o.position;
     }
-
 }

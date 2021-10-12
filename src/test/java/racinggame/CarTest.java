@@ -23,7 +23,6 @@ public class CarTest {
 
     @Test
     void 더_멀리간_자동차_테스트() {
-
         Car pobiCar = new Car("pobi");
         Car honuxCar = new Car("honux");
 
@@ -36,5 +35,4 @@ public class CarTest {
 
         assertThat(pobiCar.compareTo(honuxCar)).isGreaterThan(0);
     }
-
 }
