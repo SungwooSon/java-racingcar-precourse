@@ -21,4 +21,20 @@ public class CarTest {
         assertThat(position).isEqualTo(0);
     }
 
+    @Test
+    void 더_멀리간_자동차_테스트() {
+
+        Car pobiCar = new Car("pobi");
+        Car honuxCar = new Car("honux");
+
+        pobiCar.move(9);
+        pobiCar.move(9);
+        pobiCar.move(9);
+        honuxCar.move(9);
+        honuxCar.move(1);
+        honuxCar.move(2);
+
+        assertThat(pobiCar.compareTo(honuxCar)).isGreaterThan(0);
+    }
+
 }
