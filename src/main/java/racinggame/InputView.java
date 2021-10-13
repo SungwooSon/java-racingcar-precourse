@@ -42,7 +42,6 @@ public class InputView {
         return attemptCount;
     }
 
-
     public static void validateNumberFormat(String number) {
         Integer.parseInt(number);
     }
