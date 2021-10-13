@@ -18,4 +18,12 @@ public class InputViewTest {
         );
     }
 
+    @Test
+    void 숫자_형식_테스트() {
+        String number = "1a";
+
+        assertThatExceptionOfType(NumberFormatException.class).isThrownBy(
+                () -> InputView.validateNumberFormat(number)
+        );
+    }
 }
