@@ -9,13 +9,13 @@ public class AttemptCount {
     }
 
     private void validateCount(int count) {
-        if(isPositiveNumber(count)) {
+        if(isNegativeNumber(count)) {
             throw new IllegalStateException("시도할 횟수는 0보다 커야합니다.");
         }
     }
 
-    private boolean isPositiveNumber(int count) {
-        return count > 0;
+    private boolean isNegativeNumber(int count) {
+        return count <= 0;
     }
 
     public int getCount() {
