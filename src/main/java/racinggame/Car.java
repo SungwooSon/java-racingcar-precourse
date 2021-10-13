@@ -4,18 +4,19 @@ import java.util.Objects;
 
 public class Car implements Comparable<Car> {
     private final int CRITERION_MOVE_OR_STOP = 4;
+    private final int INITIAL_POSITION = 0;
 
     private String name;
-    private int position;
+    private Position position;
 
     public Car(String name) {
         this.name = name;
-        this.position = 0;
+        this.position = new Position(INITIAL_POSITION);
     }
 
     public void move(int number) {
         if(isMoveOrStop(number)) {
-            position++;
+            position.move();
         }
     }
 
@@ -38,7 +39,7 @@ public class Car implements Comparable<Car> {
 
     @Override
     public int compareTo(Car o) {
-        return this.position - o.position;
+        return this.position.getPosition() - o.position.getPosition();
     }
 
     public String getName() {
@@ -46,7 +47,6 @@ public class Car implements Comparable<Car> {
     }
 
     public int getPosition() {
-        return this.position;
+        return this.position.getPosition();
     }
-
 }
