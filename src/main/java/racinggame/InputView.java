@@ -29,5 +29,20 @@ public class InputView {
         }
     }
 
+    public static String readAttemptCount() {
+        System.out.println("시도할 회수는 몇회인가요?");
+        String attemptCount = Console.readLine();
+        try {
+            validateNumberFormat(attemptCount);
+        } catch (NumberFormatException e){
+            System.out.println("[Error]");
+            attemptCount = readAttemptCount();
+        }
+        return attemptCount;
+    }
 
+
+    public static void validateNumberFormat(String number) {
+        Integer.parseInt(number);
+    }
 }
