@@ -5,7 +5,7 @@ import nextstep.utils.Randoms;
 public class Race {
 
     private CarGroup carGroup;
-    private String attemptCount;
+    private AttemptCount attemptCount;
 
     public Race() {
     }
@@ -18,19 +18,19 @@ public class Race {
 
     private void initGame() {
         carGroup = new CarGroup(InputView.readCarNames());
-        attemptCount = InputView.readAttemptCount();
+        attemptCount = new AttemptCount(Integer.parseInt(InputView.readAttemptCount()));
         System.out.println();
     }
 
     private void playGame() {
         System.out.println("실행 결과");
-        for(int i=0; i<Integer.parseInt(attemptCount); i++) {
+        for(int i=0; i<attemptCount.getCount(); i++) {
             playOneAttempt();
         }
     }
 
     private void playOneAttempt() {
-        for(Car car : carGroup.getCars()) {
+        for(Car car : carGroup.getCarList()) {
             car.move(Randoms.pickNumberInRange(0,9));
             PrintResult.printCarPoition(car);
         }
@@ -38,7 +38,6 @@ public class Race {
     }
 
     private void endGame() {
-        WinnerCarGroup winnerCarGroup = new WinnerCarGroup();
-        PrintResult.printWinner(winnerCarGroup.makeWinnerList(carGroup.getCars()));
+        PrintResult.printWinner(new WinnerCarGroup().makeWinnerList(carGroup.getCarList()));
     }
 }
