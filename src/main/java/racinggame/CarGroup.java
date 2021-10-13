@@ -6,13 +6,18 @@ import java.util.List;
 public class CarGroup {
     private static final int CAR_NAME_LENGTH = 5;
 
-    private List<Car> cars;
+    private List<Car> carList;
 
     public CarGroup(String carNames) {
-        cars = new ArrayList<>();
-        for(String carName : splitValues(carNames)) {
+        carList = new ArrayList<>();
+        splitStringAndAddList(carNames);
+    }
+
+    private void splitStringAndAddList(String carNames) {
+        String[] carNamesArray = splitValues(carNames);
+        for(String carName : carNamesArray) {
             validateCarNameFormat(carName);
-            cars.add(new Car(carName));
+            carList.add(new Car(carName));
         }
     }
 
@@ -25,7 +30,7 @@ public class CarGroup {
             throw new IllegalStateException("자동차 이름의 길이는 5자리가 최대입니다.");
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public List<Car> getCarList() {
+        return carList;
     }
 }
