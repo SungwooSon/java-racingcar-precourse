@@ -14,17 +14,13 @@ public class Car implements Comparable<Car> {
     }
 
     public void move(int number) {
-        if(isMove(number)) {
+        if(isMoveOrStop(number)) {
             position++;
         }
     }
 
-    private boolean isMove(int number) {
+    private boolean isMoveOrStop(int number) {
         return number >= CRITERION_MOVE_OR_STOP;
-    }
-
-    public int getPosition() {
-        return this.position;
     }
 
     @Override
@@ -44,4 +40,13 @@ public class Car implements Comparable<Car> {
     public int compareTo(Car o) {
         return this.position - o.position;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
 }
