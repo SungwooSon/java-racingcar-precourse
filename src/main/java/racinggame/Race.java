@@ -9,9 +9,9 @@ public class Race {
     private List<Car> winnerList;
     private Car farthestMovingCar;
 
-    public Race(List<Car> list) {
-        this.carList = list;
-        winnerList = new ArrayList<>();
+    public Race() {
+        this.carList = new ArrayList<>();
+        this.winnerList = new ArrayList<>();
     }
 
     public List<Car> getWinnerList() {
@@ -34,5 +34,19 @@ public class Race {
             winnerList.add(car);
             farthestMovingCar = car;
         }
+    }
+
+    public void makeCarList(String values) {
+        for(String value : splitValues(values)) {
+            carList.add(new Car(value));
+        }
+    }
+
+    private String[] splitValues(String values) {
+        return values.split(",");
+    }
+
+    public List<Car> getCarList() {
+        return this.carList;
     }
 }
