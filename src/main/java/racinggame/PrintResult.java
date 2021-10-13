@@ -18,7 +18,7 @@ public class PrintResult {
     }
 
     private static void appendCarName(Car car) {
-        sb.append(car.getName() + ":");
+        sb.append(car.getName() + " : ");
     }
 
     private static void appendDelimeter(Car car) {
