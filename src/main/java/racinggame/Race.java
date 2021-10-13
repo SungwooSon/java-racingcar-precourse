@@ -1,52 +1,44 @@
 package racinggame;
 
-import java.util.ArrayList;
-import java.util.List;
+import nextstep.utils.Randoms;
 
 public class Race {
 
-    private List<Car> carList;
-    private List<Car> winnerList;
-    private Car farthestMovingCar;
+    private CarGroup carGroup;
+    private String attemptCount;
 
     public Race() {
-        this.carList = new ArrayList<>();
-        this.winnerList = new ArrayList<>();
     }
 
-    public List<Car> getWinnerList() {
-        farthestMovingCar = carList.get(0);
-        for(Car car : carList) {
-            clearWinnerListIfChangeFarthestMovingCar(car);
-            addListIfFarthestMovingCar(car);
-        }
-        return winnerList;
+    public void run() {
+        initGame();
+        playGame();
+        endGame();
     }
 
-    private void clearWinnerListIfChangeFarthestMovingCar(Car car) {
-        if(car.compareTo(farthestMovingCar) > 0) {
-            winnerList.clear();
-        }
+    private void initGame() {
+        carGroup = new CarGroup(InputView.readCarNames());
+        attemptCount = InputView.readAttemptCount();
+        System.out.println();
     }
 
-    private void addListIfFarthestMovingCar(Car car) {
-        if(car.compareTo(farthestMovingCar) >= 0) {
-            winnerList.add(car);
-            farthestMovingCar = car;
+    private void playGame() {
+        System.out.println("실행 결과");
+        for(int i=0; i<Integer.parseInt(attemptCount); i++) {
+            playOneAttempt();
         }
     }
 
-    public void makeCarList(String values) {
-        for(String value : splitValues(values)) {
-            carList.add(new Car(value));
+    private void playOneAttempt() {
+        for(Car car : carGroup.getCars()) {
+            car.move(Randoms.pickNumberInRange(0,9));
+            PrintResult.printCarPoition(car);
         }
+        System.out.println();
     }
 
-    private String[] splitValues(String values) {
-        return values.split(",");
-    }
-
-    public List<Car> getCarList() {
-        return this.carList;
+    private void endGame() {
+        WinnerCarGroup winnerCarGroup = new WinnerCarGroup();
+        PrintResult.printWinner(winnerCarGroup.makeWinnerList(carGroup.getCars()));
     }
 }
