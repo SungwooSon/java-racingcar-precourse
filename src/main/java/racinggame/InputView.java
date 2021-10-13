@@ -4,6 +4,8 @@ import nextstep.utils.Console;
 
 public class InputView {
 
+    private static final String ERROR_MESSAGE = "[ERROR]형식에 맞는 정확한 값을 입력하세요.";
+
     public static String readCarNames() throws IllegalStateException{
         System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String carNames = Console.readLine();
@@ -17,14 +19,13 @@ public class InputView {
     }
 
     public static void validateCarNames(String carNames) {
-
         if(carNames == null || carNames.length() == 0) {
-            throw new IllegalStateException("[Error]");
+            throw new IllegalStateException(ERROR_MESSAGE);
         }
 
         for(String carName : carNames.split(",")) {
             if(carName.length() > 5) {
-                throw new IllegalStateException("[Error]");
+                throw new IllegalStateException(ERROR_MESSAGE);
             }
         }
     }
@@ -35,7 +36,7 @@ public class InputView {
         try {
             validateNumberFormat(attemptCount);
         } catch (NumberFormatException e){
-            System.out.println("[Error]");
+            System.out.println(ERROR_MESSAGE);
             attemptCount = readAttemptCount();
         }
         return attemptCount;
